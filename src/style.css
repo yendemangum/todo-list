@@ -1,0 +1,77 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: antiquewhite;
+}
+
+.bucket {
+    width: 400px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 28% 72%;
+    gap: 4px;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+
+}
+
+.form {
+    display: none;
+    padding: 8px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+label {
+    text-align: right;
+    padding: 4px
+}
+
+fieldset {
+    display: flex;
+    width: fit-content;
+    grid-column: 2/3;
+    
+}
+
+button {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    border-radius: 8px;
+    width: fit-content;
+    height: 2rem;
+    color: white;
+    background-color: black;
+}
+
+.submit {
+    grid-column: 2/3;
+}
+
+button:hover {
+    opacity: .7;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
