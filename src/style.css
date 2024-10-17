@@ -1,6 +1,8 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: antiquewhite;
+    height: 89vh;
+    box-sizing: border-box;
 }
 
 .bucket {
@@ -10,18 +12,20 @@ body {
 form {
     display: grid;
     grid-template-columns: 28% 72%;
-    gap: 4px;
+    gap: 8px;
     position: fixed;
-    top: 30%;
-    left: 30%;
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: inherit;
 }
 
 .form {
     display: none;
-    padding: 8px;
+    padding: 16px;
     background-color: white;
     border-radius: 8px;
+    box-sizing: inherit;
 }
 
 label {
@@ -33,7 +37,8 @@ fieldset {
     display: flex;
     width: fit-content;
     grid-column: 2/3;
-    
+    box-sizing: inherit;
+
 }
 
 button {
@@ -44,6 +49,8 @@ button {
     height: 2rem;
     color: white;
     background-color: black;
+    box-sizing: inherit;
+
 }
 
 .submit {
@@ -54,24 +61,45 @@ button:hover {
     opacity: .7;
 }
 
-.content {
+.dtb {
+    align-self: center;
+    margin: 2px;
+}
+
+.field-box {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 4px;
+    box-sizing: inherit;
+
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     justify-content: center;
     align-items: center;
-    background-color: white;
     padding: 4px;
     border-radius: 4px;
+    box-sizing: inherit;
+
 }
 
 .container {
+    box-sizing: inherit;
     display: flex;
     flex-direction: column;
     gap: 4px;
     padding: 4px;
     width: 100%;
     height: 100%;
-    justify-content: center;
     align-items: center;
+}
+
+footer {
+    text-align: center;
 }
