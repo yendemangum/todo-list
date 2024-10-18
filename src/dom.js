@@ -7,7 +7,7 @@ create project with new todo
 list contents from project.array
 */
 
-import { createTodo, createProject, Project } from "./todo.js"
+import { createTodo, createProject } from "./todo.js"
 
 const body = document.querySelector("body")
 const form = document.querySelector(".form")
@@ -20,13 +20,31 @@ newProjectButton.textContent = "New Project"
 
 container.prepend(newProjectButton)
 
-const defaultProject = newProj()
+let projectName = "Default Project"
 
+const defaultProject = newProj("Default Project")
 
 let currentProject = defaultProject
 
+function saveProject() {
+    let savedProject = JSON.stringify(currentProject)
+    localStorage.setItem(projectName, savedProject)
+}
+
+function getProject() {
+    currentProject = JSON.parse(localStorage.getItem(currentProject.name))
+    currentProject.addAgain = function (todo) {
+        currentProject.array.push(todo)
+    }
+    return currentProject
+}
+
 function runDisplay() {
-    content.textContent = ""
+    content.textContent = "";
+    if (currentProject === defaultProject) {
+        getProject();
+    }  
+    console.log(currentProject)
     if (Object.keys(currentProject).length !== 0) {
         for (let i = 0; i < currentProject.array.length; i++) {
             const fieldBox = document.createElement("div")
@@ -44,13 +62,13 @@ function runDisplay() {
             deleteTodoButton.setAttribute('class', "dtb")
             deleteTodoButton.addEventListener("click", () => {
                 currentProject.array.splice(i, 1)
+                saveProject()
                 runDisplay()
             })
             fieldBox.append(deleteTodoButton)
             content.append(fieldBox)
         }
     }
-    console.log(currentProject.array)
 }
 
 runDisplay()
@@ -58,14 +76,14 @@ newProjectButton.addEventListener("click", addProject)
 
 function addProject() {
 
-    const projectName = prompt("Enter a name for your project", "Project Name")
-    const newProject = newProj()
-
+    projectName = prompt("Enter a name for your project", "Project Name")
+    const newProject = newProj(projectName)
     const projectButton = document.createElement("button")
     projectButton.setAttribute("class", "project-button")
     projectButton.textContent = projectName
     container.prepend(projectButton)
-
+    saveProject()
+    currentProject = newProject
     projectButton.addEventListener("click", () => {
         currentProject = newProject
         runDisplay()
@@ -73,39 +91,31 @@ function addProject() {
     runDisplay()
 }
 
-
-function newProj() {
-
-    const project = createProject()
+function newProj(name) {
+    const project = createProject(name)
     return project
-
 }
 
 function newTodo() {
     const formData = new FormData(form);
     const todo = createTodo(formData.get("title"), formData.get("description"), formData.get("date"), formData.get("priority"));
     return todo
-
 }
-
-
-
-
 
 form.addEventListener("submit", (event) => {
     event.preventDefault()
-
     const todo = newTodo()
-
     form.style.display = "none";
     body.style.backgroundColor = "antiquewhite"
-
-    currentProject.addToProject(todo)
-
+    if (currentProject.hasOwnProperty("addToProject")) {
+        currentProject.addToProject(todo)
+    } else {
+        currentProject.addAgain(todo)
+    }
     runDisplay()
+    saveProject()
+    
 })
-
-
 
 const defaultProjectButton = document.createElement("button")
 defaultProjectButton.textContent = "Default Project"
@@ -116,16 +126,12 @@ defaultProjectButton.addEventListener("click", () => {
 
 const newTodoButton = document.createElement("button")
 newTodoButton.textContent = "New Todo Item"
-
-
 container.prepend(defaultProjectButton, newTodoButton)
-
 newTodoButton.addEventListener("click", () => {
     form.style.display = "grid"
     body.style.backgroundColor = "lightgray"
     runDisplay()
 })
-
 
 
 export { form, currentProject, defaultProjectButton, container, content }

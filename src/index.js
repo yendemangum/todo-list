@@ -8,4 +8,3 @@ import "./style.css"
 
 import { form, currentProject, defaultProjectButton, container, content } from "./dom.js"
 import { createTodo, createProject } from "./todo.js"
-

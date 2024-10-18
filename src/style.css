@@ -1,12 +1,21 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: antiquewhite;
-    height: 89vh;
+    height: 92.5vh;
     box-sizing: border-box;
 }
 
+
 .bucket {
     width: 400px;
+}
+
+h1 {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: inherit;
 }
 
 form {
