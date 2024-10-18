@@ -34,8 +34,6 @@ function saveProject() {
     localStorage.setItem(currentProject.name, savedProject)
 }
 
-saveProject()
-
 function getProject() {
     currentProject = JSON.parse(localStorage.getItem(currentProject.name))
     currentProject.addAgain = function (todo) {
