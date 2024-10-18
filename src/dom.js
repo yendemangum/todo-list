@@ -49,6 +49,7 @@ function runDisplay() {
     if (currentProject == defaultProject) {
         getProject();
     }  
+    console.log(currentProject)
     console.log(localStorage)
     if (Object.keys(currentProject).length !== 0) {
         for (let i = 0; i < currentProject.array.length; i++) {
