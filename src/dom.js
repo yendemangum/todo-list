@@ -7,6 +7,9 @@ create project with new todo
 list contents from project.array
 */
 
+import "./style.css"
+
+
 import { createTodo, createProject } from "./todo.js"
 
 const body = document.querySelector("body")
@@ -46,8 +49,6 @@ function runDisplay() {
     if (currentProject == defaultProject) {
         getProject();
     }  
-    console.log(currentProject)
-    saveProject()
     console.log(localStorage)
     if (Object.keys(currentProject).length !== 0) {
         for (let i = 0; i < currentProject.array.length; i++) {
