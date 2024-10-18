@@ -28,23 +28,27 @@ let currentProject = defaultProject
 
 function saveProject() {
     let savedProject = JSON.stringify(currentProject)
-    localStorage.setItem(projectName, savedProject)
+    localStorage.setItem(currentProject.name, savedProject)
 }
+
+saveProject()
 
 function getProject() {
     currentProject = JSON.parse(localStorage.getItem(currentProject.name))
     currentProject.addAgain = function (todo) {
         currentProject.array.push(todo)
     }
-    return currentProject
 }
+
 
 function runDisplay() {
     content.textContent = "";
-    if (currentProject === defaultProject) {
+    if (currentProject == defaultProject) {
         getProject();
     }  
     console.log(currentProject)
+    saveProject()
+    console.log(localStorage)
     if (Object.keys(currentProject).length !== 0) {
         for (let i = 0; i < currentProject.array.length; i++) {
             const fieldBox = document.createElement("div")
@@ -72,10 +76,10 @@ function runDisplay() {
 }
 
 runDisplay()
+
 newProjectButton.addEventListener("click", addProject)
 
 function addProject() {
-
     projectName = prompt("Enter a name for your project", "Project Name")
     const newProject = newProj(projectName)
     const projectButton = document.createElement("button")
@@ -112,9 +116,8 @@ form.addEventListener("submit", (event) => {
     } else {
         currentProject.addAgain(todo)
     }
-    runDisplay()
     saveProject()
-    
+    runDisplay()
 })
 
 const defaultProjectButton = document.createElement("button")
